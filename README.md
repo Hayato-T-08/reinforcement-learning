@@ -1,1 +1,3 @@
 # reinforcement-learning
+##このリポジトリは強化学習を用いたボードゲームをプレイするAIを作成するものです。
+フレームワークはtensorflowとkerasをつかい環境はほかの方が作った環境を使います

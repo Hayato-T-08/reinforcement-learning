@@ -10,7 +10,7 @@ from rl.policy import BoltzmannQPolicy
 from rl.memory import SequentialMemory
 
 
-ENV_NAME = 'CartPole-v0'
+ENV_NAME = 'Acrobot-v1'
 
 
 # Get the environment and extract the number of actions.
@@ -40,5 +40,5 @@ dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, nb_steps_warmu
                target_model_update=1e-2, policy=policy)
 dqn.compile(Adam(learning_rate=1e-3), metrics=['mae'])
 
-dqn.load_weights('dqn_CartPole-v0_weights.h5f')
+dqn.load_weights('dqn_Acrobot-v1_weights.h5f')
 dqn.test(env, nb_episodes=10, visualize=True)

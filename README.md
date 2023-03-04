@@ -14,7 +14,7 @@ acrobot環境の詳しい情報は'https://www.gymlibrary.dev/environments/class
 dqnを用いてopen ai gym のacrobot環境を学習しますgpu環境で学習に30分かかります。
 ### double_dqn.py
 double_dqnを使ってacrobot環境を学習しますコードはほとんどdqnと同じです。
-## trained_model.py
+### trained_model.py
 学習済みモデルの重みを用いて環境をプレイします。
 
 

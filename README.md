@@ -2,7 +2,7 @@
 このリポジトリは強化学習の勉強のために作ったリポジトリです。
 ## 使用するフレームワークとライブラリ
 
-フレームワークはtensorflowとkerasをつかい環境はほかの方が作ったopenAI gymをベースにした環境を使います
+フレームワークはtensorflowとkerasをつかい環境はほかの方が作ったopenAI gymをベースにした環境を使います.また、keras-rl2という簡単に強化学習ができるライブラリを使います。
 ## project_acrobot
 open ai gym のacrobot環境をdqn等の強化学習のアルゴリズムを用いて学習させます。
 

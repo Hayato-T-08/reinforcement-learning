@@ -3,7 +3,7 @@ import gym
 import sys
 assert sys.version_info >= (3, 5)
 
-
+# Colab or Kaggle?
 IS_COLAB = "google.colab" in sys.modules
 IS_KAGGLE = "kaggle_secrets" in sys.modules
 
@@ -115,62 +115,23 @@ discount_rate = 0.95
 optimizer = keras.optimizers.Adam(learning_rate=1e-2)
 loss_fn = keras.losses.mean_squared_error
 
-def training_step(batch_size):
-    experiences = sample_experiences(batch_size)
-    states, actions, rewards, next_states, dones = experiences
-    next_Q_values = model.predict(next_states)
-    max_next_Q_values = np.max(next_Q_values, axis=1)
-    target_Q_values = (rewards +
-                       (1 - dones) * discount_rate * max_next_Q_values)
-    target_Q_values = target_Q_values.reshape(-1, 1)
-    mask = tf.one_hot(actions, n_outputs)
-    with tf.GradientTape() as tape:
-        all_Q_values = model(states)
-        Q_values = tf.reduce_sum(all_Q_values * mask, axis=1, keepdims=True)
-        loss = tf.reduce_mean(loss_fn(target_Q_values, Q_values))
-    grads = tape.gradient(loss, model.trainable_variables)
-    optimizer.apply_gradients(zip(grads, model.trainable_variables))
-
-env.seed(42)
-np.random.seed(42)
-tf.random.set_seed(42)
-
-rewards = [] 
-best_score = 0
-
-for episode in range(600):
-    obs = env.reset()    
-    for step in range(200):
-        epsilon = max(1 - episode / 500, 0.01)
-        obs, reward, done, info = play_one_step(env, obs, epsilon)
-        if done:
-            break
-    rewards.append(step) 
-    if step >= best_score: 
-        best_weights = model.get_weights() 
-        best_score = step 
-    print("\rEpisode: {}, Steps: {}, eps: {:.3f}".format(episode, step + 1, epsilon), end="") 
-    if episode > 50:
-        training_step(batch_size)
-
-model.set_weights(best_weights)
-model.save_weights('simple_dqn.hdf5')
-
-plt.figure(figsize=(8, 4))
-plt.plot(rewards)
-plt.xlabel("Episode", fontsize=14)
-plt.ylabel("Sum of rewards", fontsize=14)
-save_fig("dqn_rewards_plot")
-plt.show()
+model.load_weights('simple_dqn.hdf5')
 
 env.seed(42)
 state = env.reset()
 
-frames = []
 
+all_reward=0
 for step in range(200):
     action = epsilon_greedy_policy(state)
     state, reward, done, info = env.step(action)
+    all_reward+=reward
     if done:
         break
     img = env.render()
+
+print(all_reward)
+    
+    
+
+

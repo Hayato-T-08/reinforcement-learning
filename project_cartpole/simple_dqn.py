@@ -1,23 +1,23 @@
-# Python ≥3.5 が必要です
+# Python ≥3.5 is required
 import gym
 import sys
 assert sys.version_info >= (3, 5)
 
-
+# Is this notebook running on Colab or Kaggle?
 IS_COLAB = "google.colab" in sys.modules
 IS_KAGGLE = "kaggle_secrets" in sys.modules
 
 
 
-# Scikit-Learn ≥0.20 が必要でs
+# Scikit-Learn ≥0.20 is required
 import sklearn
 assert sklearn.__version__ >= "0.20"
 
-# TensorFlow ≥2.0 が必要です
+# TensorFlow ≥2.0 is required
 import tensorflow as tf
 from tensorflow import keras
 assert tf.__version__ >= "2.0"
-#gpuチェック
+
 if not tf.config.list_physical_devices('GPU'):
     print("No GPU was detected. CNNs can be very slow without a GPU.")
     if IS_COLAB:
@@ -25,11 +25,11 @@ if not tf.config.list_physical_devices('GPU'):
     if IS_KAGGLE:
         print("Go to Settings > Accelerator and select GPU.")
 
-
+# Common imports
 import numpy as np
 import os
 
-
+# to make this notebook's output stable across runs
 np.random.seed(42)
 tf.random.set_seed(42)
 import matplotlib as mpl
@@ -40,11 +40,11 @@ mpl.rc('axes', labelsize=14)
 mpl.rc('xtick', labelsize=12)
 mpl.rc('ytick', labelsize=12)
 
-
+# To get smooth animations
 import matplotlib.animation as animation
 mpl.rc('animation', html='jshtml')
 
-
+# Where to save the figures
 PROJECT_ROOT_DIR = "."
 CHAPTER_ID = "rl"
 IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)
@@ -75,9 +75,9 @@ keras.backend.clear_session()
 tf.random.set_seed(42)
 np.random.seed(42)
 
-env = gym.make('Acrobot-v1')
-input_shape = [6] # 状態の数
-n_outputs = 3 #行動の数
+env = gym.make("CartPole-v1")
+input_shape = [4] # == env.observation_space.shape
+n_outputs = 2 # == env.action_space.n
 
 model = keras.models.Sequential([
     keras.layers.Dense(32, activation="elu", input_shape=input_shape),
@@ -145,11 +145,11 @@ for episode in range(600):
         obs, reward, done, info = play_one_step(env, obs, epsilon)
         if done:
             break
-    rewards.append(step) 
-    if step >= best_score: 
-        best_weights = model.get_weights() 
-        best_score = step 
-    print("\rEpisode: {}, Steps: {}, eps: {:.3f}".format(episode, step + 1, epsilon), end="") 
+    rewards.append(step) # Not shown in the book
+    if step >= best_score: # Not shown
+        best_weights = model.get_weights() # Not shown
+        best_score = step # Not shown
+    print("\rEpisode: {}, Steps: {}, eps: {:.3f}".format(episode, step + 1, epsilon), end="") # Not shown
     if episode > 50:
         training_step(batch_size)
 

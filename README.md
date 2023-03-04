@@ -8,11 +8,11 @@ open ai gym のacrobot環境をdqn等の強化学習のアルゴリズムを用�
 
 acrobot環境の詳しい情報は'https://www.gymlibrary.dev/environments/classic_control/acrobot/'
 を参照してください
-# example.py
+### example.py
 このファイルはランダムな行動を取らせacrobot環境がどのようなもの確認するためのファイルです。
-# simple_dqn.py
+### simple_dqn.py
 dqnを用いてopen ai gym のacrobot環境を学習しますgpu環境で学習に30分かかります。
-# double_dqn.py
+### double_dqn.py
 double_dqnを使ってacrobot環境を学習しますコードはほとんどdqnと同じです。
 
 

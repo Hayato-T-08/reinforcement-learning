@@ -2,7 +2,7 @@
 このリポジトリは強化学習の勉強のために作ったリポジトリです。
 ## 使用するフレームワークとライブラリ
 
-フレームワークはtensorflowとkerasをつかい環境はほかの方が作ったopenAI gymをベースにした環境を使います.また、keras-rl2という簡単に強化学習ができるライブラリを使います。
+keras-rl2という簡単に強化学習ができるライブラリを使います。
 
 必要なライブラリ　tensorflow keras-rl2 h5py Pillow gym gym[atari] 等
 ## project_acrobot
@@ -12,11 +12,9 @@ acrobot環境の詳しい情報は'https://www.gymlibrary.dev/environments/class
 を参照してください
 ### example.py
 このファイルはランダムな行動を取らせacrobot環境がどのようなもの確認するためのファイルです。
-### simple_dqn.py
+### keras_rl_dqn.py
 dqnを用いてopen ai gym のacrobot環境を学習しますgpu環境で学習に30分かかります。
-### double_dqn.py
-double_dqnを使ってacrobot環境を学習しますコードはほとんどdqnと同じです。
-### trained_model.py
+### keras_rl_trained.py
 学習済みモデルの重みを用いて環境をプレイします。
 
 ## project_cartpole
@@ -29,4 +27,14 @@ keras-rl2を用いてcartpoleを学習させるコードです。
 環境の閾値が-100となっているので十分に学習できたといえます。
 
 報酬を最大化するためにすぐに黒い線にあたろうとするのが興味深いです。
+
+## project_invaders
+ネット上でSpaceInvadersをプレイするRLモデルを見つけました。'https://huggingface.co/blog/deep-rl-dqn'
+
+そちらのコードを共有します。こちらのサイトではQ学習やDQNのアルゴリズムを勉強できるのでおすすめです。(全部英語です)
+
+自分で作ろうと思ったのですが使用するライブラリがgymの仕様変更により使えなかったり、tesorflow 2.10.0との互換性がなくエラーが発生するので断念しました。
+
+
+
 

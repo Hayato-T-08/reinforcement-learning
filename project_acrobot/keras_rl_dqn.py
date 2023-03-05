@@ -46,6 +46,7 @@ dqn.compile(Adam(learning_rate=1e-3), metrics=['mae'])
 dqn.fit(env, nb_steps=50000, visualize=True, verbose=2)
 
 # After training is done, we save the final weights.
+
 dqn.save_weights(f'dqn_Acrobot-v1_weights.h5f', overwrite=True)
 
 # Finally, evaluate our algorithm for 5 episodes.

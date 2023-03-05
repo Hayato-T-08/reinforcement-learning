@@ -1,5 +1,0 @@
-gym
-python-chess
-numpy
-cairosvg
-pillow
